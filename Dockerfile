@@ -26,4 +26,11 @@ RUN chown -R rust:rust $HOME/*
 
 RUN set -x && \
     . ~/.cargo/env && \
-    rustc --version
+    rustup target add i686-unknown-linux-gnu && \
+    rustup install nightly && \
+    rustc --version && \
+    rustup run nightly rustc --version
+
+RUN set -x && \
+    . ~/.cargo/env && \
+    rustup show
