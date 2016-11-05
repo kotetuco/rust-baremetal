@@ -6,11 +6,27 @@ MAINTAINER kotetuco
 # add user
 RUN useradd --user-group --create-home --shell /bin/false rust
 
+# install tools
 USER root
 RUN set -x && \
     apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y curl
+    apt-get install -y curl && \
+    apt-get install -y wget && \
+    apt-get install -y make && \
+    apt-get install -y gcc && \
+    apt-get install -y git && \
+    apt-get install -y qemu
+
+# install binutils (i686)
+RUN set -x && \
+    wget http://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.gz -O /root/binutils-2.27.tar.gz && \
+    cd /root/ && \
+    tar zxvf binutils-2.27.tar.gz && \
+    cd binutils-2.27 && \
+    ./configure --target=i686-unknown-linux-gnu && \
+    make && \
+    make install
 
 ENV HOME=/home/rust
 USER rust
@@ -24,10 +40,11 @@ RUN set -x && \
 
 RUN chown -R rust:rust $HOME/*
 
+# install rust(stable, nightly)
 RUN set -x && \
     . ~/.cargo/env && \
     rustup install nightly && \
     rustup target add i686-unknown-linux-gnu && \
     rustup install stable-i686-unknown-linux-gnu && \
-    rustup install nightly-i686-unknown-linux-gnu && \
-    rustup show
+    rustup install nightly-i686-unknown-linux-gnu
+    #rustup show
