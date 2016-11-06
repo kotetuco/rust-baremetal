@@ -2,3 +2,5 @@ rust-dev:
   build: "."
   container_name: "rust-develop"
   working_dir: "/home/rust"
+  volumes:
+    - ./shared:/home/rust/shared

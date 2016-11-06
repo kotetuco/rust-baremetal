@@ -15,6 +15,7 @@ RUN set -x && \
     apt-get install -y wget && \
     apt-get install -y make && \
     apt-get install -y gcc && \
+    apt-get install -y nasm && \
     apt-get install -y git && \
     apt-get install -y qemu
 
@@ -48,3 +49,5 @@ RUN set -x && \
     rustup install stable-i686-unknown-linux-gnu && \
     rustup install nightly-i686-unknown-linux-gnu
     #rustup show
+
+RUN mkdir shared
