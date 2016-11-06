@@ -1,6 +1,6 @@
-rust-dev:
+rust-baremetal:
   build: "."
-  container_name: "rust-develop"
+  container_name: "rust-baremetal"
   working_dir: "/home/rust"
   volumes:
     - ./shared:/home/rust/shared

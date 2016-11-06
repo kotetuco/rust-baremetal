@@ -16,6 +16,7 @@ RUN set -x && \
     apt-get install -y make && \
     apt-get install -y gcc && \
     apt-get install -y nasm && \
+    apt-get install -y mtools && \
     apt-get install -y git && \
     apt-get install -y qemu
 
@@ -48,6 +49,6 @@ RUN set -x && \
     rustup target add i686-unknown-linux-gnu && \
     rustup install stable-i686-unknown-linux-gnu && \
     rustup install nightly-i686-unknown-linux-gnu
-    #rustup show
 
+# for shared volumes
 RUN mkdir shared
