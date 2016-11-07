@@ -45,10 +45,8 @@ RUN chown -R rust:rust $HOME/*
 # install rust(stable, nightly)
 RUN set -x && \
     . ~/.cargo/env && \
-    rustup install nightly && \
-    rustup target add i686-unknown-linux-gnu && \
-    rustup install stable-i686-unknown-linux-gnu && \
-    rustup install nightly-i686-unknown-linux-gnu
+    rustup --verbose install nightly && \
+    rustup --verbose target add i686-unknown-linux-gnu
 
 # for shared volumes
 RUN mkdir shared
