@@ -18,6 +18,7 @@ RUN set -x && \
     apt-get install -y nasm && \
     apt-get install -y mtools && \
     apt-get install -y git && \
+    apt-get install -y file && \
     apt-get install -y qemu
 
 # install binutils (i686)
@@ -46,7 +47,10 @@ RUN chown -R rust:rust $HOME/*
 RUN set -x && \
     . ~/.cargo/env && \
     rustup --verbose install nightly && \
-    rustup --verbose target add i686-unknown-linux-gnu
+    rustup --verbose target add i686-unknown-linux-gnu && \
+    rustup default nightly
+
+RUN . $HOME/.cargo/env > $HOME/.bashrc
 
 # for shared volumes
 RUN mkdir shared
