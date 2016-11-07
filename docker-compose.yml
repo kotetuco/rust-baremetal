@@ -4,3 +4,4 @@ rust-baremetal:
   working_dir: "/home/rust"
   volumes:
     - ./shared:/home/rust/shared
+  tty: true
