@@ -3,14 +3,12 @@ FROM debian:jessie
 
 MAINTAINER kotetuco
 
-# add user
-RUN useradd --user-group --create-home --shell /bin/false rust
-
 # install tools
 USER root
 RUN set -x && \
     apt-get update && \
     apt-get upgrade -y && \
+    apt-get install -y sudo && \
     apt-get install -y curl && \
     apt-get install -y wget && \
     apt-get install -y make && \
@@ -30,6 +28,12 @@ RUN set -x && \
     ./configure --target=i686-unknown-linux-gnu && \
     make && \
     make install
+
+# add user and enable `sudo` command
+RUN set -x && \
+    groupadd -g 1000 rust && \
+    useradd -g rust --create-home -G sudo -m -s /bin/bash rust && \
+    echo 'rust:password' | chpasswd
 
 ENV HOME=/home/rust
 USER rust
