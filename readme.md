@@ -11,7 +11,7 @@ The container can be build Rust source code.
 1. Install Docker.
 1. Cloning this repository.
 1. Make `shared` directory in root of this repository.
-1. Run `docker-compose build` and `docker-compose build` command. So you can make image and container.
+1. Run `docker-compose build` and `docker-compose create` command. So you can make image and container.
 
 ### Running and attach the container
 
