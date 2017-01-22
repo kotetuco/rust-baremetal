@@ -29,6 +29,14 @@ RUN set -x && \
     make && \
     make install
 
+# install binutils (arm-none-eabi)
+RUN set -x && \
+    cd /root/binutils-2.27 && \
+    make distclean && \
+    ./configure --target=arm-none-eabi && \
+    make && \
+    make install
+
 # add user and enable `sudo` command
 RUN set -x && \
     groupadd -g 1000 rust && \
@@ -52,7 +60,8 @@ RUN set -x && \
     . ~/.cargo/env && \
     rustup --verbose install nightly && \
     rustup --verbose target add i686-unknown-linux-gnu && \
-    rustup default nightly
+    rustup default nightly && \
+    cargo install xargo
 
 RUN . $HOME/.cargo/env > $HOME/.bashrc
 
