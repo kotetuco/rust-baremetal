@@ -61,6 +61,7 @@ RUN set -x && \
     rustup --verbose install nightly && \
     rustup --verbose target add i686-unknown-linux-gnu && \
     rustup default nightly && \
+    rustup component add rust-src && \
     cargo install xargo
 
 RUN . $HOME/.cargo/env > $HOME/.bashrc
